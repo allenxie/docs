@@ -295,7 +295,7 @@ def format_nb(
       $ python3 -m pip install -U --user git+https://github.com/tensorflow/docs
       $ python3 -m tensorflow_docs.tools.nbfmt notebook.ipynb
       """)
-      notebooks = "\n".join([f"- {str(fp)}" for fp in test_fail_notebooks])
+      notebooks = "\n".join([f"- {str(fp)}" for fp in test_fail_notebooks])  # pyrefly: ignore[bad-assignment]
       print(error_template.format(notebooks=notebooks), file=sys.stderr)
       return Status.FAIL
     else:

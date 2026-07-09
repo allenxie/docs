@@ -182,4 +182,4 @@ def fail(message: Optional[str] = None,
   Raises:
     LintFailError: Lint failure with optional message.
   """
-  raise LintFailError(message, always_show, fix, fix_args)
+  raise LintFailError(message, always_show, fix, fix_args)  # pyrefly: ignore[bad-argument-type]

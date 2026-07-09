@@ -69,7 +69,7 @@ class _ArgDefaultAndAnnotationExtractor(_BaseDefaultAndAnnotationExtractor):
 
     # Capture the return type annotation.
     if node.returns:
-      self.return_annotation = _source_from_ast(node.returns)
+      self.return_annotation = _source_from_ast(node.returns)  # pyrefly: ignore[bad-assignment]
 
     # Capture the args type annotation.
     for arg in node.args.args:

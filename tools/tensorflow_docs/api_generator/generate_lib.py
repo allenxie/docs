@@ -103,7 +103,7 @@ def write_docs(
     ValueError: if `output_dir` is not an absolute path
   """
   output_dir = pathlib.Path(output_dir)
-  site_path = pathlib.Path('/', site_path)
+  site_path = pathlib.Path('/', site_path)  # pyrefly: ignore[bad-assignment]
 
   # Make output_dir.
   if not output_dir.is_absolute():

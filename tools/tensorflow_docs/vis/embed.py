@@ -46,4 +46,4 @@ def embed_file(path: os.PathLike) -> IPython.display.HTML:
   mime, unused_encoding = mimetypes.guess_type(str(path))
   data = path.read_bytes()
 
-  return embed_data(mime, data)
+  return embed_data(mime, data)  # pyrefly: ignore[bad-argument-type]

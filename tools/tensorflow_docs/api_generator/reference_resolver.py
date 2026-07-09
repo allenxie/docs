@@ -436,6 +436,6 @@ class ReferenceResolver:
     # relative_path_to_root gets you to api_docs/python, we go from there
     # to api_docs/cc, and then add ret.
     cc_relative_path = os.path.normpath(
-        posixpath.join(self._link_prefix, '../cc', ret))
+        posixpath.join(self._link_prefix, '../cc', ret))  # pyrefly: ignore[no-matching-overload]
 
     return f'<a href="{cc_relative_path}"><code>{link_text}</code></a>'

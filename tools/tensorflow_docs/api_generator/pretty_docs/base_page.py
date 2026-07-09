@@ -150,7 +150,7 @@ class PageInfo:
     # Convert from OS-specific path to URL/POSIX path.
     relative_path = posixpath.join(*relative_path.split(os.path.sep))
 
-    with self.parser_config.reference_resolver.temp_prefix(relative_path):
+    with self.parser_config.reference_resolver.temp_prefix(relative_path):  # pyrefly: ignore[missing-attribute]
       self.set_doc(
           parser.parse_md_docstring(
               self.py_object,
@@ -207,7 +207,7 @@ class PageInfo:
 
   @property
   def self_link(self):
-    if not self.parser_config.self_link_base:
+    if not self.parser_config.self_link_base:  # pyrefly: ignore[missing-attribute]
       return None
     rel_path = parser.documentation_path(self.full_name)
     rel_path = rel_path[: -1 * len('.md')]  # strip suffix

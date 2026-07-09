@@ -527,7 +527,7 @@ def split_methods(methods: List[MethodInfo]) -> Methods:
   elif new_constructor is not None:
     constructor = new_constructor
 
-  return Methods(info_dict=method_info_dict, constructor=constructor)
+  return Methods(info_dict=method_info_dict, constructor=constructor)  # pyrefly: ignore[bad-argument-type]
 
 
 def merge_blocks(class_page_info: ClassPageInfo, ctor_info: MethodInfo):

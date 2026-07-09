@@ -74,7 +74,7 @@ def documentation_path(full_name, is_fragment=False):
   result = posixpath.join(*parts) + '.md'
 
   if is_fragment:
-    result = result + '#' + fragment
+    result = result + '#' + fragment  # pyrefly: ignore[unbound-name]
 
   return result
 
@@ -744,7 +744,7 @@ def get_defined_in(
       return None
 
   # In case this is compiled, point to the original
-  if posix_rel_path_str.endswith('.pyc'):
+  if posix_rel_path_str.endswith('.pyc'):  # pyrefly: ignore[unbound-name]
     # If a PY3 __pycache__/ subdir is being used, omit it.
     posix_rel_path_str = posix_rel_path_str.replace('__pycache__/', '')
     # Strip everything after the first . so that variants such as .pyc and
@@ -873,7 +873,7 @@ class Metadata(object):
     Args:
       item: The parsed page section to add.
     """
-    self._content.append(item.short_name)
+    self._content.append(item.short_name)  # pyrefly: ignore[missing-attribute]
 
   def build_html(self):
     """Returns the Metadata block as an Html string."""
@@ -883,7 +883,7 @@ class Metadata(object):
 
     parts.append(f'<meta itemprop="name" content="{self.name}" />')
     parts.append(f'<meta itemprop="path" content="{self.version}" />')
-    for item in self._content:
+    for item in self._content:  # pyrefly: ignore[not-iterable]
       parts.append(f'<meta itemprop="property" content="{item}"/>')
 
     parts.extend(['</div>', ''])

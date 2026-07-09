@@ -285,7 +285,7 @@ def explicit_package_contents_filter(path: Sequence[str], parent: Any,
     if inspect.ismodule(obj):
       # Do not include modules in a package not explicitly imported by the
       # package.
-      if is_parent_package and name not in imported_symbols:
+      if is_parent_package and name not in imported_symbols:  # pyrefly: ignore[unbound-name]
         continue
       # Do not include modules imported by a module that is not a package.
       if is_parent_module and not is_parent_package:
@@ -484,8 +484,8 @@ def add_proto_fields(path: Sequence[str], parent: Any,
   for name, prop in field_properties.items():
     setattr(real_parent, name, prop)
 
-  children = dict(children)
-  children.update(field_properties)
-  children = sorted(children.items(), key=lambda item: item[0])
+  children = dict(children)  # pyrefly: ignore[bad-assignment]
+  children.update(field_properties)  # pyrefly: ignore[missing-attribute]
+  children = sorted(children.items(), key=lambda item: item[0])  # pyrefly: ignore[missing-attribute]
 
   return children

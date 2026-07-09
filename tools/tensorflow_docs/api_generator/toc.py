@@ -232,7 +232,7 @@ class TocBuilder:
     title = getattr(entry, 'title', None)
     is_section = isinstance(entry, Section)
 
-    return (is_section, title)
+    return (is_section, title)  # pyrefly: ignore[bad-return]
 
   def _flat_class_entries(self,
                           api_node: doc_generator_visitor.ApiTreeNode,
@@ -245,9 +245,9 @@ class TocBuilder:
           obj_type_lib.ObjType.CLASS, obj_type_lib.ObjType.MODULE
       ]:
         subtitle = f'{title}.{name}'
-        entries.extend(self._flat_class_entries(child_node, title=subtitle))
+        entries.extend(self._flat_class_entries(child_node, title=subtitle))  # pyrefly: ignore[bad-argument-type]
 
-    return entries
+    return entries  # pyrefly: ignore[bad-return]
 
   def _make_status(self, api_node: doc_generator_visitor.ApiTreeNode):
     """Returns the toc.Status of an ApiTreeNode."""
@@ -347,4 +347,4 @@ class FlatModulesTocBuilder(TocBuilder):
 
     status = self._make_status(api_node)
     module_section = Section(title=title, section=entries, status=status)
-    return [module_section] + submodule_sections
+    return [module_section] + submodule_sections  # pyrefly: ignore[bad-return]

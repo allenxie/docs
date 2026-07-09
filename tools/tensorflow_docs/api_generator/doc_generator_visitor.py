@@ -126,7 +126,7 @@ class PathTree(Dict[ApiPath, PathTreeNode]):
       yield from children
       stack.extend(children)
 
-  def __contains__(self, path: ApiPath) -> bool:  # pylint: disable=useless-super-delegation
+  def __contains__(self, path: ApiPath) -> bool:  # pylint: disable=useless-super-delegation  # pyrefly: ignore[bad-override]
     # TODO(b/184563451): remove
     return super().__contains__(path)
 
@@ -185,9 +185,9 @@ class DocGeneratorVisitor(object):
     """
     self._index: Dict[str, Any] = {}
     self._tree: Dict[str, List[str]] = {}
-    self._reverse_index: Dict[int, str] = None
-    self._duplicates: Dict[str, List[str]] = None
-    self._duplicate_of: Dict[str, str] = None
+    self._reverse_index: Dict[int, str] = None  # pyrefly: ignore[bad-assignment]
+    self._duplicates: Dict[str, List[str]] = None  # pyrefly: ignore[bad-assignment]
+    self._duplicate_of: Dict[str, str] = None  # pyrefly: ignore[bad-assignment]
 
     self.path_tree = PathTree()
     self.api_tree = None
@@ -403,7 +403,7 @@ class DocGeneratorVisitor(object):
     if self._reverse_index is not None:
       return
 
-    self.api_tree = ApiTree.from_path_tree(self.path_tree, self._score_name)
+    self.api_tree = ApiTree.from_path_tree(self.path_tree, self._score_name)  # pyrefly: ignore[bad-assignment]
 
     # Maps the id of a symbol to its fully qualified name. For symbols that have
     # several aliases, this map contains the first one found.
@@ -456,9 +456,9 @@ class DocGeneratorVisitor(object):
       if not maybe_singleton(py_object):
         reverse_index[object_id] = main_name
 
-    self._duplicate_of = duplicate_of
-    self._duplicates = duplicates
-    self._reverse_index = reverse_index
+    self._duplicate_of = duplicate_of  # pyrefly: ignore[bad-assignment]
+    self._duplicates = duplicates  # pyrefly: ignore[bad-assignment]
+    self._reverse_index = reverse_index  # pyrefly: ignore[bad-assignment]
 
 
 @dataclasses.dataclass(repr=False)
@@ -535,7 +535,7 @@ class ApiTree(Dict[ApiPath, ApiTreeNode]):
       return None
     return self._node_for_object.get(id(obj), None)
 
-  def __contains__(self, path: ApiPath) -> bool:  # pylint: disable=useless-super-delegation
+  def __contains__(self, path: ApiPath) -> bool:  # pylint: disable=useless-super-delegation  # pyrefly: ignore[bad-override]
     # TODO(b/184563451): remove
     return super().__contains__(path)
 
@@ -545,7 +545,7 @@ class ApiTree(Dict[ApiPath, ApiTreeNode]):
     while stack:
       children = list(stack.popleft().children.values())
       yield from children
-      stack.extend(children)
+      stack.extend(children)  # pyrefly: ignore[bad-argument-type]
 
   def __setitem__(self, *args, **kwargs):
     raise TypeError('Use .insert instead of setitem []')

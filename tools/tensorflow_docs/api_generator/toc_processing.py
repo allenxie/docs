@@ -94,7 +94,7 @@ def _nest_toc_entry(title: str, section: Section) -> TocEntry:
     return target_entry
   else:
     rest = maybe_rest[0]
-    return _nest_toc_entry(rest, target_entry['section'])
+    return _nest_toc_entry(rest, target_entry['section'])  # pyrefly: ignore[bad-argument-type]
 
 
 def sort_toc(toc: Toc, labels: Iterable[str]) -> Toc:
